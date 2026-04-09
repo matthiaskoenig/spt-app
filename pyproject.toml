@@ -22,6 +22,6 @@ classifiers = [
 ]
 dependencies = [
     "streamlit>=1.56.0",
-    "opencv-python>=4.13.0.92",
+    "opencv-python-headless>=4.13.0.92",
     "pandas>=3.0.2",
 ]
