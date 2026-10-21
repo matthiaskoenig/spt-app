@@ -81,3 +81,58 @@ after importing and review the resulting images and video playback.
 `data/provenance.json` records the source commit, source catalogue hash, rendering
 options, active figure generations, and SHA-256 hashes for source and bundled
 media. Commit it together with `simulations.tsv` and all updated images and videos.
+
+## Refresh the convergence study
+
+The convergence view bundles all seven resolutions in increasing full-lobule
+cell count: `50000`, `37250`, `25000`, `18750`, `12500`, `09375`, and `06250`.
+Mesh labels are source identifiers. They do not imply a physical length unit.
+The two finest histories end at 77,687.6 and 36,590 seconds, respectively.
+Keep these histories and their original completion status in the catalogue.
+
+Generate convergence videos and matching figures from the porous_media checkout:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 MPLBACKEND=Agg \
+  MPLCONFIGDIR=/tmp/spt-app-convergence-mpl \
+  .venv/bin/python -m research.spt.plot_geometry \
+  --input-root /data/koeniglab/spt \
+  --data-root results/spt \
+  --output-root /tmp/spt-app-convergence-source \
+  --study convergence --geometry lobulus \
+  --formats png --no-overviews \
+  --video-frames 200 --fps 12 --dpi 125 --workers 4
+```
+
+From the spt-app checkout, import the seven media sets and the current numerical
+analysis:
+
+```bash
+uv run --no-sync python -m data.import_convergence \
+  --source-root ../porous_media/results/spt \
+  --media-root /tmp/spt-app-convergence-source
+```
+
+The importer resolves active manifests under `figures/convergence_lobulus`,
+`analysis/convergence_lobulus`, and `overviews/convergence_lobulus`. It checks
+artifact fingerprints, the seven-mesh cohort, full-lobule cell counts, the common
+time interval, and the finest available reference. It prepares every file before
+replacing files in `data/convergence/`. The separate convergence provenance
+records source and exported hashes, generations, source revision, worktree state,
+and renderer source hashes. Simulation assets remain independent.
+
+The app presents native histories through each run's actual endpoint, alongside
+matched comparisons over 0 to 36,590 seconds (10.1639 hours). Spatial figures use
+0, 5,400, and 36,590 seconds. The resolution plot compares means at 5,400 seconds
+(1.5 hours). Differences at matched times use mesh `06250`, with 39,246 lobule
+cells, as the finest available reference. Spatial RMSE uses reference bin volume
+and reports the fraction of reference volume covered by matching populated bins.
+These comparisons do not assume a continuum solution or convergence order.
+
+All seven meshes remain visible, including the large substrate/product values
+from `50000`. Linear and symlog views are available. Quantitative plots display
+necrosis in percent; mesh maps and exported tables retain fractions. Undefined
+relative differences remain missing. The source mean-difference table carries a reference cell count
+in every row; the importer joins the actual run cell counts from the geometry
+metadata while preserving difference values and missing entries. This
+transformation is recorded in provenance.

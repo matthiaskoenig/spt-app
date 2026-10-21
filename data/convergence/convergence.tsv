@@ -1,0 +1,8 @@
+run_id	num_cells	num_points	num_steps	tstart_s	tend_s	expected_duration_s	complete
+convergence_50000	708	912	866	0.0	86400.0	86400.0	True
+convergence_37250	1224	1488	866	0.0	86400.0	86400.0	True
+convergence_25000	2640	3012	866	0.0	86400.0	86400.0	True
+convergence_18750	4398	4884	866	0.0	86400.0	86400.0	True
+convergence_12500	10080	10800	866	0.0	86400.0	86400.0	True
+convergence_09375	17586	18528	778	0.0	77687.6	86400.0	False
+convergence_06250	39246	40656	367	0.0	36590.0	86400.0	False

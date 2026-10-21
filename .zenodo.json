@@ -8,7 +8,7 @@
       "name": "König, Matthias"
     }
   ],
-  "description": "<p><code>spt-app</code> provides interactive visualization of SPT liver model simulations of zonation-function relationships and drug-induced liver injury. Explore six zonation patterns and eight substrate flows using time-course images and videos from the porous_media SPT analysis.</p><p>The application is available at <a href=\"https://sptmodel.streamlit.app\">https://sptmodel.streamlit.app</a>. Source code is available at <a href=\"https://github.com/matthiaskoenig/spt-app\">https://github.com/matthiaskoenig/spt-app</a>. For questions or problems, <a href=\"https://github.com/matthiaskoenig/spt-app/issues\">open an issue</a>.</p><h2>Funding</h2><p>Matthias König is supported by the German Research Foundation (DFG) within the Research Unit Programme FOR 5151 <a href=\"https://qualiperf.de\">QuaLiPerF</a> (Quantifying Liver Perfusion-Function Relationship in Complex Resection - A Systems Medicine Approach), grant number 436883643, and by grant number 465194077 (Priority Programme SPP 2311, Subproject SimLivA).</p>",
+  "description": "<p><code>spt-app</code> provides interactive visualization of SPT liver model simulations of zonation-function relationships and drug-induced liver injury. Explore six zonation patterns and eight substrate flows using time-course images and videos from the porous_media SPT analysis. The convergence study includes seven mesh resolutions, native and matched time courses, spatial profiles, differences from the finest available mesh, and downloadable numerical results. Incomplete histories retain their actual endpoints, and matched comparisons use the shared time interval.</p><p>The application is available at <a href=\"https://sptmodel.streamlit.app\">https://sptmodel.streamlit.app</a>. Source code is available at <a href=\"https://github.com/matthiaskoenig/spt-app\">https://github.com/matthiaskoenig/spt-app</a>. For questions or problems, <a href=\"https://github.com/matthiaskoenig/spt-app/issues\">open an issue</a>.</p><h2>Funding</h2><p>Matthias König is supported by the German Research Foundation (DFG) within the Research Unit Programme FOR 5151 <a href=\"https://qualiperf.de\">QuaLiPerF</a> (Quantifying Liver Perfusion-Function Relationship in Complex Resection - A Systems Medicine Approach), grant number 436883643, and by grant number 465194077 (Priority Programme SPP 2311, Subproject SimLivA).</p>",
   "access_right": "open",
   "license": "MIT",
   "keywords": [
@@ -18,7 +18,8 @@
     "zonation",
     "multiscale modeling",
     "drug-induced liver injury",
-    "visualization"
+    "visualization",
+    "convergence"
   ],
-  "version": "0.2.0"
+  "version": "0.3.0"
 }

@@ -1,0 +1,13 @@
+{
+  "start_s": 0.0,
+  "end_s": 36590.0,
+  "spatial_times_s": [
+    0.0,
+    5400.0,
+    36590.0
+  ],
+  "reference_run": "convergence_06250",
+  "reference_num_cells": 39246,
+  "necrosis_table_unit": "fraction",
+  "necrosis_figure_unit": "percent"
+}

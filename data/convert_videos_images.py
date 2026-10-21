@@ -66,9 +66,8 @@ def load_simulations(source_root: Path) -> list[dict[str, str]]:
     return sorted(simulations, key=lambda row: row["sim_key"])
 
 
-def artifact(root: Path, simulation_id: str, filename: str) -> tuple[Path, dict]:
+def generation_artifact(directory: Path, filename: str) -> tuple[Path, dict]:
     """Resolve an artifact through its active generation and verify its fingerprint."""
-    directory = root / "figures" / "simulations_lobulus" / simulation_id
     manifest = json.loads((directory / "manifest.json").read_text())
     path = (directory / manifest["generation"] / filename).resolve()
     if not path.is_relative_to(directory.resolve()):
@@ -85,6 +84,17 @@ def artifact(root: Path, simulation_id: str, filename: str) -> tuple[Path, dict]
     ):
         raise ValueError(f"Artifact fingerprint does not match its manifest: {path}")
     return path, manifest
+
+
+def artifact(
+    root: Path,
+    simulation_id: str,
+    filename: str,
+    *,
+    study: str = "simulations_lobulus",
+) -> tuple[Path, dict]:
+    """Resolve a figure from the selected study without using stale catalogues."""
+    return generation_artifact(root / "figures" / study / simulation_id, filename)
 
 
 def convert_image(image_in: Path, image_out: Path, width: int, dpi: int = 150) -> None:

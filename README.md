@@ -23,6 +23,12 @@ All 48 simulation images and videos are bundled with the app. Select one of six
 zonation patterns and substrate flows 0 through 7. Media is served by the app,
 so a local checkout displays its own simulation results.
 
+Choose **Convergence study** to explore all seven mesh resolutions, their videos
+and mesh geometries, native and matched time courses, spatial profiles, and
+differences from the finest available mesh. Download the numerical tables or
+the matched NetCDF analysis. Two source histories stop before 24 hours;
+comparisons use their shared interval of 0 to 36,590 seconds.
+
 See [development and data updates](docs/development.md) for checks and refreshing
 the bundled media from the porous_media SPT analysis.
 
