@@ -1,49 +1,49 @@
-sim_key	pattern_key	pattern_name	boundary_flow_key	boundary_flow	color
-sim001	0	constant	0	-3.797784e-06	#f0f0f0ff
-sim002	0	constant	1	-4.6576515e-06	#d9d9d9ff
-sim003	0	constant	2	-5.5176906e-06	#bdbdbdff
-sim004	0	constant	3	-7.2377693e-06	#959595ff
-sim005	0	constant	4	-1.0677926e-05	#727272ff
-sim006	0	constant	5	-1.4118084e-05	#515151ff
-sim007	0	constant	6	-1.755824e-05	#242424ff
-sim008	0	constant	7	-2.0938397e-05	#000000ff
-sim009	1	linear increase	0	-3.797784e-06	#deebf7ff
-sim010	1	linear increase	1	-4.6576515e-06	#c6dbefff
-sim011	1	linear increase	2	-5.5176906e-06	#9dcae1ff
-sim012	1	linear increase	3	-7.2377693e-06	#6aaed6ff
-sim013	1	linear increase	4	-1.0677926e-05	#4191c6ff
-sim014	1	linear increase	5	-1.4118084e-05	#2070b4ff
-sim015	1	linear increase	6	-1.755824e-05	#08509bff
-sim016	1	linear increase	7	-2.0938397e-05	#08306bff
-sim017	2	sharp pericentral	0	-3.797784e-06	#efedf5ff
-sim018	2	sharp pericentral	1	-4.6576515e-06	#dadaebff
-sim019	2	sharp pericentral	2	-5.5176906e-06	#bcbddcff
-sim020	2	sharp pericentral	3	-7.2377693e-06	#9e9ac8ff
-sim021	2	sharp pericentral	4	-1.0677926e-05	#807cbaff
-sim022	2	sharp pericentral	5	-1.4118084e-05	#6950a3ff
-sim023	2	sharp pericentral	6	-1.755824e-05	#53268fff
-sim024	2	sharp pericentral	7	-2.0938397e-05	#3f007dff
-sim025	3	linear decrease	0	-3.797784e-06	#fee0d2ff
-sim026	3	linear decrease	1	-4.6576515e-06	#fcbba1ff
-sim027	3	linear decrease	2	-5.5176906e-06	#fc9272ff
-sim028	3	linear decrease	3	-7.2377693e-06	#fb694aff
-sim029	3	linear decrease	4	-1.0677926e-05	#ee3a2cff
-sim030	3	linear decrease	5	-1.4118084e-05	#ca181dff
-sim031	3	linear decrease	6	-1.755824e-05	#a30f15ff
-sim032	3	linear decrease	7	-2.0938397e-05	#67000dff
-sim033	4	sharp periportal	0	-3.797784e-06	#fee6ceff
-sim034	4	sharp periportal	1	-4.6576515e-06	#fdd0a2ff
-sim035	4	sharp periportal	2	-5.5176906e-06	#fdae6aff
-sim036	4	sharp periportal	3	-7.2377693e-06	#fd8c3bff
-sim037	4	sharp periportal	4	-1.0677926e-05	#f16813ff
-sim038	4	sharp periportal	5	-1.4118084e-05	#d84801ff
-sim039	4	sharp periportal	6	-1.755824e-05	#a53603ff
-sim040	4	sharp periportal	7	-2.0938397e-05	#7f2704ff
-sim041	5	random	0	-3.797784e-06	#e5f5e0ff
-sim042	5	random	1	-4.6576515e-06	#c7e9c0ff
-sim043	5	random	2	-5.5176906e-06	#a0d99bff
-sim044	5	random	3	-7.2377693e-06	#73c476ff
-sim045	5	random	4	-1.0677926e-05	#40aa5dff
-sim046	5	random	5	-1.4118084e-05	#228a44ff
-sim047	5	random	6	-1.755824e-05	#006c2cff
-sim048	5	random	7	-2.0938397e-05	#00441bff
+sim_key	pattern_key	pattern_name	boundary_flow_key	boundary_flow	boundary_flow_unit
+sim001	0	constant	0	-1.60747e-09	unspecified in source
+sim002	0	constant	1	-7.58061e-06	unspecified in source
+sim003	0	constant	2	-1.41387e-05	unspecified in source
+sim004	0	constant	3	-2.51064e-05	unspecified in source
+sim005	0	constant	4	-4.15705e-05	unspecified in source
+sim006	0	constant	5	-5.37477e-05	unspecified in source
+sim007	0	constant	6	-6.33526e-05	unspecified in source
+sim008	0	constant	7	-7.12447e-05	unspecified in source
+sim009	1	linear increase	0	-1.60747e-09	unspecified in source
+sim010	1	linear increase	1	-7.58061e-06	unspecified in source
+sim011	1	linear increase	2	-1.41387e-05	unspecified in source
+sim012	1	linear increase	3	-2.51064e-05	unspecified in source
+sim013	1	linear increase	4	-4.15705e-05	unspecified in source
+sim014	1	linear increase	5	-5.37477e-05	unspecified in source
+sim015	1	linear increase	6	-6.33526e-05	unspecified in source
+sim016	1	linear increase	7	-7.12447e-05	unspecified in source
+sim017	2	sharp pericentral	0	-1.60747e-09	unspecified in source
+sim018	2	sharp pericentral	1	-7.58061e-06	unspecified in source
+sim019	2	sharp pericentral	2	-1.41387e-05	unspecified in source
+sim020	2	sharp pericentral	3	-2.51064e-05	unspecified in source
+sim021	2	sharp pericentral	4	-4.15705e-05	unspecified in source
+sim022	2	sharp pericentral	5	-5.37477e-05	unspecified in source
+sim023	2	sharp pericentral	6	-6.33526e-05	unspecified in source
+sim024	2	sharp pericentral	7	-7.12447e-05	unspecified in source
+sim025	3	linear decrease	0	-1.60747e-09	unspecified in source
+sim026	3	linear decrease	1	-7.58061e-06	unspecified in source
+sim027	3	linear decrease	2	-1.41387e-05	unspecified in source
+sim028	3	linear decrease	3	-2.51064e-05	unspecified in source
+sim029	3	linear decrease	4	-4.15705e-05	unspecified in source
+sim030	3	linear decrease	5	-5.37477e-05	unspecified in source
+sim031	3	linear decrease	6	-6.33526e-05	unspecified in source
+sim032	3	linear decrease	7	-7.12447e-05	unspecified in source
+sim033	4	sharp periportal	0	-1.60747e-09	unspecified in source
+sim034	4	sharp periportal	1	-7.58061e-06	unspecified in source
+sim035	4	sharp periportal	2	-1.41387e-05	unspecified in source
+sim036	4	sharp periportal	3	-2.51064e-05	unspecified in source
+sim037	4	sharp periportal	4	-4.15705e-05	unspecified in source
+sim038	4	sharp periportal	5	-5.37477e-05	unspecified in source
+sim039	4	sharp periportal	6	-6.33526e-05	unspecified in source
+sim040	4	sharp periportal	7	-7.12447e-05	unspecified in source
+sim041	5	random	0	-1.60747e-09	unspecified in source
+sim042	5	random	1	-7.58061e-06	unspecified in source
+sim043	5	random	2	-1.41387e-05	unspecified in source
+sim044	5	random	3	-2.51064e-05	unspecified in source
+sim045	5	random	4	-4.15705e-05	unspecified in source
+sim046	5	random	5	-5.37477e-05	unspecified in source
+sim047	5	random	6	-6.33526e-05	unspecified in source
+sim048	5	random	7	-7.12447e-05	unspecified in source

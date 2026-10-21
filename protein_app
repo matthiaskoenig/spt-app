@@ -1,3 +1,4 @@
-#!/bin/bash
-
-streamlit run spt_app.py
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")"
+uv run --locked streamlit run spt_app.py "$@"

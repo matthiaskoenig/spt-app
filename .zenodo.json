@@ -1,6 +1,6 @@
 {
   "upload_type": "software",
-  "title": "spt-app: database of protein variability of CYP, UGT, ABC and SLC in human liver",
+  "title": "spt-app: visualization of SPT liver model simulations",
   "creators": [
     {
       "orcid": "0000-0003-1725-179X",
@@ -8,17 +8,17 @@
       "name": "König, Matthias"
     }
   ],
-  "description": "<p><code>protein-distribution-app</code> is a database of protein variability of CYP, UGT, ABC and SLC in human liver with source code available from available from <a href=\"https://github.com/matthiaskoenig/protein-distribution-app\">https://github.com/matthiaskoenig/protein-distribution-app</a></p>\n<p>If you have any questions or issues please <a href=\"https://github.com/matthiaskoenig/protein-distribution-app/issues\">open an issue</a></p>\n<h2>Funding</h2><p>Matthias König is supported by the Federal Ministry of Education and Research (BMBF, Germany) within the research network Systems Medicine of the Liver (<strong>LiSyM</strong>, grant number 031L0054) and by the German Research Foundation (DFG) within the Research Unit Programme FOR 5151 <strong><a href=\"https://qualiperf.de\">QuaLiPerF</a></strong> (Quantifying Liver Perfusion-Function Relationship in Complex Resection - A Systems Medicine Approach)\" by grant number 436883643 and by grant number 465194077 (Priority Programme SPP 2311, Subproject SimLivA).</p>",
+  "description": "<p><code>spt-app</code> provides interactive visualization of SPT liver model simulations of zonation-function relationships and drug-induced liver injury. Explore six zonation patterns and eight substrate flows using time-course images and videos from the porous_media SPT analysis.</p><p>The application is available at <a href=\"https://sptmodel.streamlit.app\">https://sptmodel.streamlit.app</a>. Source code is available at <a href=\"https://github.com/matthiaskoenig/spt-app\">https://github.com/matthiaskoenig/spt-app</a>. For questions or problems, <a href=\"https://github.com/matthiaskoenig/spt-app/issues\">open an issue</a>.</p><h2>Funding</h2><p>Matthias König is supported by the German Research Foundation (DFG) within the Research Unit Programme FOR 5151 <a href=\"https://qualiperf.de\">QuaLiPerF</a> (Quantifying Liver Perfusion-Function Relationship in Complex Resection - A Systems Medicine Approach), grant number 436883643, and by grant number 465194077 (Priority Programme SPP 2311, Subproject SimLivA).</p>",
   "access_right": "open",
-  "license": "LGPL-3.0",
+  "license": "MIT",
   "keywords": [
-    "database",
-    "protein",
-    "human",
+    "SPT",
+    "simulation",
     "liver",
-    "CYP",
-    "UGT",
-    "ABC",
-    "SLC"
-  ]
+    "zonation",
+    "multiscale modeling",
+    "drug-induced liver injury",
+    "visualization"
+  ],
+  "version": "0.2.0"
 }

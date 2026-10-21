@@ -1,112 +1,90 @@
+"""Explore the published SPT liver model simulations."""
+
+from pathlib import Path
+
 import pandas as pd
 import streamlit as st
-from pathlib import Path
-import time
-import base64
-import cv2
 
-st.set_page_config(
-    page_title="SPT app",
-    page_icon="🧊",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        "Get help": "mailto:konigmatt@googlemail.com",
-        "Report a bug": "https://github.com/matthiaskoenig/spt-app/issues/new",
-        "About": """
-        SPT web application.
-        """,
-    },
-)
-st.markdown("""
-        <style>
-               .block-container {
-                    padding-top: 2rem;
-                    padding-bottom: 1rem;
-                    padding-left: 5rem;
-                    padding-right: 5rem;
-                }
-        </style>
-        """, unsafe_allow_html=True)
+DATA_PATH = Path(__file__).resolve().parent / "data"
 
-
-data_path = Path(__file__).parent / "data"
-simulations_path = data_path / "simulations.tsv"
 
 @st.cache_data
-def load_data():
-    """Load data."""
-    df = pd.read_csv(simulations_path, sep="\t")
-    simulations = df.sim_key.values
-    patterns = df.pattern_name.unique()
-    pattern2simulations = {}
-    for pattern in patterns:
-        pattern2simulations[pattern] = df[df.pattern_name == pattern].sim_key.values.tolist()
-
-    return df, simulations, patterns, pattern2simulations
+def load_data(path: Path) -> pd.DataFrame:
+    """Load simulation conditions from the bundled analysis catalogue."""
+    return pd.read_csv(path, sep="\t")
 
 
-df, simulations, patterns, pattern2simulations = load_data()
+def main() -> None:
+    """Render the selected simulation using its bundled image and video."""
+    st.set_page_config(
+        page_title="SPT app",
+        page_icon="🧊",
+        layout="wide",
+        initial_sidebar_state="auto",
+        menu_items={
+            "Get help": "mailto:konigmatt@googlemail.com",
+            "Report a bug": "https://github.com/matthiaskoenig/spt-app/issues/new",
+            "About": "SPT web application.",
+        },
+    )
+    simulations = load_data(DATA_PATH / "simulations.tsv")
 
-# --- Side bar ------------------------------------------------------------------------
-st.sidebar.title("SPT model simulations")
-selected_pattern = st.sidebar.selectbox(
-    "Select zonation pattern",
-    index=3,  # default: linear increase
-    options=patterns,
-)
-selected_flow = st.sidebar.select_slider(
-    'Select substrate flow',
-    value=3,  # default
-    options=[0, 1, 2, 3, 4, 5, 6],
-)
-simulation_id = df[(df.pattern_name == selected_pattern) & (df.boundary_flow_key == selected_flow)].sim_key.values[0]
+    st.sidebar.title("SPT model simulations")
+    patterns = simulations["pattern_name"].drop_duplicates().tolist()
+    selected_pattern = st.sidebar.selectbox(
+        "Select zonation pattern",
+        options=patterns,
+        index=patterns.index("linear increase"),
+    )
+    pattern_runs = simulations[simulations["pattern_name"] == selected_pattern]
+    flows = sorted(int(flow) for flow in pattern_runs["boundary_flow_key"].unique())
+    selected_flow = st.sidebar.select_slider(
+        "Select substrate flow",
+        options=flows,
+        value=3 if 3 in flows else flows[0],
+    )
+    row = pattern_runs[pattern_runs["boundary_flow_key"] == selected_flow].iloc[0]
+    simulation_id = str(row["sim_key"])
 
-st.sidebar.header("References")
-st.sidebar.markdown(
-"""
-**Simulation of zonation-function relationships in the liver using coupled multiscale models: Application to drug-induced liver injury**.
-Steffen Gerhäusser, Lena Lambers, Luis Mandl, Julian Franquinet, Tim Ricken, Matthias König.
-bioRxiv 2024.03.26.586870; doi: https://doi.org/10.1101/2024.03.26.586870
-"""
-)
-st.sidebar.markdown(
-"""
-**SPT model (0.5.4)**.
-König, M. (2024).
-Zenodo. https://doi.org/10.5281/zenodo.10853538
-"""
-)
+    st.sidebar.header("References")
+    st.sidebar.markdown(
+        "**Simulation of zonation-function relationships in the liver using coupled "
+        "multiscale models: Application to drug-induced liver injury**.\n\n"
+        "Steffen Gerhäusser, Lena Lambers, Luis Mandl, Julian Franquinet, "
+        "Tim Ricken, Matthias König.\n\n"
+        "bioRxiv 2024.03.26.586870; "
+        "doi: https://doi.org/10.1101/2024.03.26.586870"
+    )
+    st.sidebar.markdown(
+        "**SPT model (0.5.4)**.\n\nKönig, M. (2024).\n\n"
+        "Zenodo. https://doi.org/10.5281/zenodo.10853538"
+    )
 
-# --- Main ----------------------------------------------------------------------------
+    st.markdown(
+        f"**simulation**: `{simulation_id}`, **pattern**: `{selected_pattern}`, "
+        f"**substrate flow**: `Sv{selected_flow}`"
+    )
+    video_path = DATA_PATH / f"{simulation_id}_h264.mp4"
+    image_path = DATA_PATH / f"{simulation_id}.png"
+    for path in (video_path, image_path):
+        if not path.is_file():
+            st.error(f"Simulation asset is missing: {path.name}")
+            st.stop()
 
-row = df[df.sim_key == simulation_id]
-st.markdown(f"**simulation**: `{simulation_id}`, **pattern**: `{row.pattern_name.values[0]}`, **substrate flow**: `Sv{row.boundary_flow_key.values[0]}`")
-
-# video rendering
-url = f"https://github.com/matthiaskoenig/spt-app/raw/main/data/{simulation_id}_h264.mp4"
-video_placeholder = st.empty()
-video_html = f"""
-    <video width="80%" controls="false" autoplay loop="true" align="middle">
-      <source src="{url}" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-"""
-video_placeholder.empty()
-time.sleep(1.0)
-video_placeholder.markdown(video_html, unsafe_allow_html=True)
-st.divider()
-
-# image
-def render_img_html(image_b64):
-    st.markdown(f"<img style='max-width: 80%;max-height: 100%;' src='data:image/png;base64, {image_b64}'/>", unsafe_allow_html=True)
-
-def image_to_base64(image_path):
-    image = cv2.imread(image_path, cv2.IMREAD_UNCHANGED)
-    _, encoded_image = cv2.imencode(".png", image)
-    base64_image = base64.b64encode(encoded_image.tobytes()).decode("utf-8")
-    return base64_image
+    st.video(
+        str(video_path),
+        autoplay=True,
+        loop=True,
+        muted=True,
+        alt=f"{simulation_id}: {selected_pattern}, substrate flow Sv{selected_flow}",
+    )
+    st.divider()
+    st.image(
+        str(image_path),
+        width="stretch",
+        alt=f"Time-course snapshots for {simulation_id}",
+    )
 
 
-image_path = data_path / f"{simulation_id}.png"
-render_img_html(image_to_base64(str(image_path)))
+if __name__ == "__main__":
+    main()
