@@ -208,10 +208,15 @@ def import_convergence(source_root: Path, media_root: Path, output_root: Path) -
             destination = staging / name
             if name.endswith(".png") and not name.endswith("_mesh.png"):
                 convert_image(source, destination, width=2000)
+            elif name.endswith(".tsv"):
+                columns, rows = (
+                    (mean_columns, differences)
+                    if name == "convergence-means.tsv"
+                    else read_table(source)
+                )
+                write_table(destination, columns, rows)
             else:
                 shutil.copyfile(source, destination)
-            if name == "convergence-means.tsv":
-                write_table(destination, mean_columns, differences)
             provenance["files"][name] = {
                 "source_sha256": sha256(source),
                 "sha256": sha256(destination),

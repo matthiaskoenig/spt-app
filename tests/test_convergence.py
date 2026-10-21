@@ -9,7 +9,7 @@ from PIL import Image
 from streamlit.testing.v1 import AppTest
 
 from data.convert_videos_images import sha256
-from data.import_convergence import MESH_IDS, RUN_IDS, load_runs, write_table
+from data.import_convergence import MESH_IDS, RUN_IDS, load_runs, read_table, write_table
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "convergence"
@@ -173,3 +173,17 @@ def test_partial_convergence_catalogue_is_rejected(tmp_path: Path) -> None:
     write_table(tmp_path / "catalog.tsv", ["study", "run_id"], [])
     with pytest.raises(ValueError, match="all seven convergence"):
         load_runs(tmp_path)
+
+
+def test_table_round_trip_preserves_precision_and_missing_fields(tmp_path: Path) -> None:
+    """Normalize Windows line endings without trimming empty final columns."""
+    source = tmp_path / "source.tsv"
+    source.write_bytes(
+        b"run\tvalue\toptional\r\n"
+        b"convergence_06250\t1.2345678901234567\t\r\n"
+        b"convergence_50000\t\t\r\n"
+    )
+    columns, rows = read_table(source)
+    destination = tmp_path / "export.tsv"
+    write_table(destination, columns, rows)
+    assert destination.read_bytes() == source.read_bytes().replace(b"\r\n", b"\n")

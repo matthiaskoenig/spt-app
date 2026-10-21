@@ -136,3 +136,7 @@ relative differences remain missing. The source mean-difference table carries a 
 in every row; the importer joins the actual run cell counts from the geometry
 metadata while preserving difference values and missing entries. This
 transformation is recorded in provenance.
+
+TSV exports use LF line endings and retain numeric strings and empty fields.
+Editor and Git format rules preserve trailing empty columns, which carry missing
+metadata rather than redundant whitespace.
